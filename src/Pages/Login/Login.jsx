@@ -10,12 +10,12 @@ const Login = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/";
-    const { user, signIn } = useContext(AuthContext)
+    const {  signIn } = useContext(AuthContext)
     const [showPass, setShowPass] = useState(false)
     const handelPass = () => {
         setShowPass(!showPass)
     }
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit,  formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
         signIn(data.email,data.password)

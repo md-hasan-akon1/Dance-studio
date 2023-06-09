@@ -11,5 +11,6 @@ module.exports = {
   plugins: ['react-refresh'],
   rules: {
     'react-refresh/only-export-components': 'warn',
+    "no-underscore-dangle": ["error", { "allow": [_id, b_codes_id] }],
   },
 }
