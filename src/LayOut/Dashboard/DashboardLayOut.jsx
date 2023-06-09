@@ -2,14 +2,14 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { GrMenu } from "react-icons/gr";
 const DashboardLayOut = () => {
-  const isAdmin = false
+  const isAdmin = false;
   const isInstructor=true
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open relative">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content ">
        <Outlet></Outlet>
-        <label htmlFor="my-drawer-2" className="btn  drawer-button lg:hidden"><GrMenu></GrMenu></label>
+        <label htmlFor="my-drawer-2" className="btn absolute top-0 drawer-button lg:hidden"><GrMenu></GrMenu></label>
 
       </div>
       <div className="drawer-side">
