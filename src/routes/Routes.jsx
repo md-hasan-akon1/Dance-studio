@@ -5,6 +5,13 @@ import MainLayout from "../LayOut/MainLayOyt/MainLayout";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignIn from "../Pages/SignIn/SignIn";
+import DashboardLayOut from "../LayOut/Dashboard/DashboardLayOut";
+import ManageClass from "../Pages/Dashboard/ManageClsass/ManageClass";
+import ManageUser from "../Pages/Dashboard/ManageUser/ManageUser";
+import SelectedClass from "../Pages/Dashboard/SelectedClass/SelectedClass";
+import EnrolledClass from "../Pages/Dashboard/EnrolledClass/EnrolledClass";
+import AddClass from "../Pages/Dashboard/AddClass/AddClass";
+import MyClass from "../Pages/Dashboard/MyClass/MyClass";
 
 const router = createBrowserRouter([
     {
@@ -12,22 +19,53 @@ const router = createBrowserRouter([
         element: <MainLayout></MainLayout>,
         children: [
             {
-                path:'/',
-                element:<Home></Home>
+                path: '/',
+                element: <Home></Home>
 
-            }
+            },
 
 
         ]
-        
+
     },
     {
-        path:'/login',
-        element:<Login></Login>
+        path: '/login',
+        element: <Login></Login>
     },
     {
-        path:'/signin',
-        element:<SignIn></SignIn>
+        path: '/signin',
+        element: <SignIn></SignIn>
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayOut></DashboardLayOut>,
+        children: [
+            {
+                path: '/dashboard/manageclass',
+                element: <ManageClass></ManageClass>
+            },
+            {
+                path: '/dashboard/manageuser',
+                element: <ManageUser></ManageUser>
+            },
+            {
+                path: '/dashboard/selectedclass',
+                element: <SelectedClass></SelectedClass>
+            },
+            {
+                path: '/dashboard/enrolledclass',
+                element: <EnrolledClass></EnrolledClass>
+            },
+            {
+                    path:'/dashboard/addclass',
+                    element:<AddClass></AddClass>
+            },
+            {
+                path:'/dashboard/myclass',
+                element:<MyClass></MyClass>
+            }
+        ]
     }
+
 ]);
 export default router;

@@ -102,7 +102,7 @@ const SignIn = () => {
 
 
     return (
-        <div>
+        <div className="">
             <div className="hero min-h-screen ">
                 <div className="hero-content  grid grid-cols-1 lg:grid-cols-2  mx-auto ">
                     <div>

@@ -26,7 +26,7 @@ const Login = () => {
         .catch(error=>console.log(error))
     };
     return (
-        <div className=' border grid grid-cols-1 lg:grid-cols-2  mx-auto rounded-lg'>
+        <div className='  border grid grid-cols-1 lg:grid-cols-2  mx-auto rounded-lg'>
             <div>
                 <img className='h-50 lg:w-[100%] rounded-lg hidden lg:block  ' src="https://i.ibb.co/3RhgJG0/Login-8.jpg" alt="" />
 

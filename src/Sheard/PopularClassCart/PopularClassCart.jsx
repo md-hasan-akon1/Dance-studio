@@ -15,7 +15,7 @@ const {user}=useContext(AuthContext)
 
     }
     return (
-        <div className="card mt-4 w-96 glass">
+        <div className="card mt-4 w-96 mx-auto glass">
             <figure><img className="h-72  w-full" src={image} alt="photo!" /></figure>
             <div className="card-body">
                 <h2 className="card-title font-mono text-blue-700">Name: {style}</h2>
