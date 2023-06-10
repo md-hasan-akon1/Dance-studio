@@ -31,7 +31,6 @@ const Classes = () => {
                 body: JSON.stringify(selectedData)
             }).then(res => res.json())
             .then(data =>{
-                console.log(data)
                 if(data.upsertedId){
                     refetch()
                     Swal.fire({
@@ -47,7 +46,7 @@ const Classes = () => {
                     refetch()
                     Swal.fire({
                       position: 'top-end',
-                      icon: 'success',
+                      icon: 'error',
                       title: 'class already added .',
                       showConfirmButton: false,
                       timer: 1500
