@@ -4,7 +4,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const PopularClassCart = ({ item }) => {
 const {user}=useContext(AuthContext)
-    const { image, style, instructorName, totalSeats, studentNumber, price } = item;
+    const { image, style, instructorName, totalSeats, studentNumber, price,availableSeats } = item;
     const [addCart, setAddCart] = useState(false)
     const [student, setStudent] = useState(studentNumber)
     const [available, setAvailable] = useState(totalSeats - studentNumber)
@@ -21,12 +21,12 @@ const {user}=useContext(AuthContext)
                 <h2 className="card-title font-mono text-blue-700">Name: {style}</h2>
                 <p className="font-bold">Instructor Name: {instructorName}</p>
                 <div className="flex flex-none m-0">
-                    <p className="">Available Seats: {available}</p>
+                    <p className="">Available Seats: {availableSeats}</p>
                     <p>Total students: {student}</p>
                 </div>
                 <div className="flex justify-between">
                     <p>Total Seats: {totalSeats}</p>
-                     <p>Price: ${price.amount}</p>
+                     <p>Price: ${price}</p>
                 </div>
 
                 <div className="card-actions justify-end">

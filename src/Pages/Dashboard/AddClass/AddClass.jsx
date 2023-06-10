@@ -34,9 +34,9 @@ const AddClass = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    const classInfo = { className, instructorName, email, availableSeats, price, image: data.data.display_url,status:"pending" }
-                    axiosSecure.post('/addClass',{classInfo}
-                    ).then(data => {
+                    const classInfo = { className, instructorName, email, availableSeats:parseInt(availableSeats),price:parseFloat(price), image: data.data.display_url,status:"pending",studentNumber:0 }
+                    axiosSecure.post('/addClass',classInfo)
+                    .then(data => {
                         console.log(data.data)
                         setAddLoading(false)
                         if(data.data.insertedId){
