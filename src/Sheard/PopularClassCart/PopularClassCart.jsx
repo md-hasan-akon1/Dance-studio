@@ -6,7 +6,7 @@ const PopularClassCart = ({ item }) => {
     const { user } = useContext(AuthContext)
     const { image, className, instructorName, totalSeats, studentNumber, price, availableSeats } = item;
     return (
-        <div className="card mt-4 w-96 mx-auto glass">
+        <div className="card my-4 w-96 mx-auto glass">
             <figure><img className="h-72  w-full" src={image} alt="photo!" /></figure>
             <div className="card-body">
                 <h2 className="card-title font-mono text-secondary">Name: {className}</h2>
