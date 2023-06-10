@@ -16,10 +16,8 @@ const Navbar = () => {
         {
             user ? <>
                 <NavLink to='/dashboard' className="mx-4">Dashboard</NavLink>
-            </> :
-                <>
-
-                </>
+            </> :''
+               
         }
 
 
