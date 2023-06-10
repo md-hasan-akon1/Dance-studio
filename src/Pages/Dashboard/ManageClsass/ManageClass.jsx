@@ -35,7 +35,26 @@ fetch(`http://localhost:5000/addclass/approve/${id}`, {
         })
 }
 
+const handelDeny=(id)=>{
 
+    fetch(`http://localhost:5000/addclass/deny/${id}`, {
+        method: "PATCH",
+      }).then(res => res.json())
+        .then(data => {
+          if (data.modifiedCount > 0) {
+            refetch()
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: ' Class deny successfully.',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+  
+        })
+
+}
 
 
     return (
