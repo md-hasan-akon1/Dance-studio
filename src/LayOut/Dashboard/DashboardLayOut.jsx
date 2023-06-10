@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { GrMenu } from "react-icons/gr";
 const DashboardLayOut = () => {
-  const isAdmin = false;
-  const isInstructor=true
+  const isAdmin = true;
+  const isInstructor=false
   return (
     <div className="drawer lg:drawer-open relative">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
