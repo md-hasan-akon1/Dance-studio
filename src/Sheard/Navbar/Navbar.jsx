@@ -51,7 +51,7 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-end">
                         {
-                            user ? <><button onClick={handleLogOut} className="btn btn-primary">LogOut</button></> : <><NavLink to='/login' className="mx-4 btn btn-primary">login</NavLink></>
+                            user ? <><button onClick={handleLogOut} className="btn btn-secondary">LogOut</button></> : <><NavLink to='/login' className="mx-4 btn btn-secondary">login</NavLink></>
                         }
 
                     </div>
