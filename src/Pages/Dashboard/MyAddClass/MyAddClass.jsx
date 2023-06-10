@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyClass = () => {
+const MyAddClass = () => {
     return (
         <div className='pt-10  bg-slate-200 h-full '>
             <p>this is my classes</p>
@@ -8,4 +8,4 @@ const MyClass = () => {
     );
 };
 
-export default MyClass;
+export default MyAddClass;

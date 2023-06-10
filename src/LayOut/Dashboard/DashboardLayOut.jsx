@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { GrMenu } from "react-icons/gr";
 const DashboardLayOut = () => {
-  const isAdmin =true ;
+  const isAdmin =false ;
   const isInstructor=false;
   return (
     <div className="drawer lg:drawer-open relative">
