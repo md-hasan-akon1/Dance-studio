@@ -1,22 +1,16 @@
 import React, { useContext } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
-import { useQuery } from '@tanstack/react-query';
 import { MdPayment } from "react-icons/md";
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
+import useSelectData from '../../../Hooks/useSelectData';
 
 const SelectedClass = () => {
     const { user } = useContext(AuthContext)
-    const [axiosSecure] = useAxiosSecure()
-    const { data: selectedData = [], refetch } = useQuery({
-        queryKey: ['add/cart'],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/add/cart')
-            return res.data;
-        }
-    })
-
+    const [selectedData,refetch]=useSelectData()
+     const [axiosSecure] = useAxiosSecure()
     const handelDelete = (id) => {
 
         if (user?.email) {
@@ -92,7 +86,7 @@ const SelectedClass = () => {
                                 <td>{item.instructorName}</td>
                                 <td>${item.price}</td>
                                 <th>
-                                    <button className="btn btn-ghost bg-[#e50e84] "><MdPayment></MdPayment> Pay</button>
+                                   <Link to={`/dashboard/payment/${item._id}`}> <button className="btn btn-ghost bg-[#e50e84] "><MdPayment></MdPayment> Pay</button></Link>
                                 </th>
                                 <th>
                                     <button onClick={() => handelDelete(item._id)} className="btn btn-ghost bg-[#e50e84] text-black "><FaTrashAlt></FaTrashAlt></button>
