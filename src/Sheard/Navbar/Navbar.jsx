@@ -11,7 +11,7 @@ const Navbar = () => {
     }
     const navItems = <>
         <NavLink to='/' className="mx-4">Home</NavLink>
-        <NavLink className="mx-4">Instructors</NavLink>
+        <NavLink to='/instructor' className="mx-4">Instructors</NavLink>
         <NavLink to='/classes' className="mx-4">Classes</NavLink>
         {
             user ? <>
