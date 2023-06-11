@@ -13,7 +13,7 @@ const CheckOutForm = ({ item, price }) => {
     const [error, setError] = useState()
     const [processing, setProcessing] = useState(false)
  
-    console.log(clientSecret)
+    
     useEffect(() => {
 
         axiosSecure.post('/create-payment-intent', { price })
@@ -66,12 +66,14 @@ const CheckOutForm = ({ item, price }) => {
                 transitionId: paymentIntent.id,
                 ...item
             }
-            axiosSecure.post('/payment', payment).then(res => {
-                if (res.data.insertedId) {
 
-                    console.log(item._id)
+console.log(payment)
 
-                }
+            axiosSecure.patch(`/payment/${item._id}`, payment).then(res => {
+               console.log(res.data)
+            //    if(res.data.upsertedCount>0||res.data.matchedCount>0){
+            //     axiosSecure.patch(`update/${item.id}`).then(res=>console.log(res.data))
+            //    }
             })
 
         }

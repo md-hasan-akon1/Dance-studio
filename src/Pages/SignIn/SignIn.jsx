@@ -66,33 +66,6 @@ const SignIn = () => {
                             })
 
 
-
-
-
-                        // fetch('https://bistro-boss-server-fawn.vercel.app/users', {
-                        //     method: 'POST',
-                        //     headers: {
-                        //         'content-type': 'application/json'
-                        //     },
-                        //     body: JSON.stringify(saveUser)
-                        // })
-                        //     .then(res => res.json())
-                        //     .then(data => {
-                        //         if (data.insertedId) {
-                        //             reset();
-                        //             Swal.fire({
-                        //                 position: 'top-end',
-                        //                 icon: 'success',
-                        //                 title: 'User created successfully.',
-                        //                 showConfirmButton: false,
-                        //                 timer: 1500
-                        //             });
-                        //             navigate('/');
-                        //         }
-                        //     })
-
-
-
                     })
                     .catch(error => console.log(error))
             })
@@ -102,51 +75,51 @@ const SignIn = () => {
 
 
     return (
-        <div className="">
-            <div className="hero min-h-screen ">
-                <div className="hero-content  grid grid-cols-1 lg:grid-cols-2  mx-auto ">
+        <div className=" h-full relative">
+            <div className="hero  ">
+                <div className="hero-content grid grid-cols-1 lg:grid-cols-2  mx-auto ">
                     <div>
-                        <img className='h-50 lg:w-[100%] rounded-lg hidden lg:block  ' src="https://i.ibb.co/3RhgJG0/Login-8.jpg" alt="" />
+                        <img className=' lg:w-[100%] h-ful rounded-lg hidden lg:block  ' src="https://i.ibb.co/3RhgJG0/Login-8.jpg" alt="" />
 
                         <img className=' h-28 mx-auto lg:hidden' src="https://i.ibb.co/GQCxRGY/login.jpg" alt="" />
                         <h1 className='text-3xl font-bold font-mono text-center lg:hidden'>Please SignIn</h1>
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Name</span>
-                                </label>
-                                <input type="text"  {...register("name", { required: true })} name="name" placeholder="Name" className="input input-bordered" />
+                  
+                        <div className="card-body max-w-sm  bg-slate-200 m-0 p-6">
+                             <form onSubmit={handleSubmit(onSubmit)} className="card-body max-w-sm  my-0">
+                            <div className="">
+                              <span>Name</span>
+                                <input type="text"  {...register("name", { required: true })} name="name" placeholder="Name" className="input input-bordered max-w-xs" />
                                 {errors.name && <span className="text-red-600">Name is required</span>}
                             </div>
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Photo URL</span>
+                            <div className="w-full max-w-xs">
+                                
+                                    <span >Photo URL</span>
 
-                                </label>
-                                <input type="file" {...register("photoURL", { required: true })} className="file-input file-input-bordered w-full max-w-xs" />
+                          
+                                <input type="file" {...register("photoURL", { required: true })} className="file-input file-input-bordered file-input-secondary max-w-xs" />
                                 {errors.photoURL && <span className="text-red-600">Photo URL is required</span>}
                             </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Email</span>
-                                </label>
-                                <input type="email"  {...register("email", { required: true })} name="email" placeholder="email" className="input input-bordered" />
+                            <div className="">
+                            
+                                    <span className="">Email</span>
+                              
+
+                                <input type="email"  {...register("email", { required: true })} name="email" placeholder="email" className="input input-bordered max-w-xs" />
                                 {errors.email && <span className="text-red-600">Email is required</span>}
                             </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
+                            <div className="">
+                                
+                                    <span className="">Password</span>
+                               
                                 <input type={`${showPass1 ? 'text' : 'password'}`}  {...register("password", {
                                     required: true,
                                     minLength: 6,
                                     maxLength: 20,
                                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
-                                })} placeholder="password" className="input input-bordered" />
+                                })} placeholder="password" className="input input-bordered max-w-xs" />
                                 {
-                                    showPass1 ? <FaEyeSlash onClick={handelPass1} className=" absolute top-[360px] right-10"></FaEyeSlash> : <FaEye onClick={handelPass1} className=" absolute top-[360px] right-10"></FaEye>
+                                    showPass1 ? <FaEyeSlash onClick={handelPass1} className="-mt-12 ms-72 mb-5"></FaEyeSlash> : <FaEye onClick={handelPass1}className="-mt-12 ms-72 mb-5"></FaEye>
                                 }
                                 {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
                                 {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
@@ -154,14 +127,17 @@ const SignIn = () => {
                                 {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
 
                             </div>
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Confirm password</span>
+                            <div className=" mt-3 w-full ">
+                               
+                                    <span className="">Confirm password</span>
 
-                                </label>
+                           
                                 <input  {...register("password_repeat")}
                                     id="confirmPassword"
-                                    type={`${showPass ? 'text' : 'password'}`} placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                                    type={`${showPass ? 'text' : 'password'}`} placeholder="Type here" className="input input-bordered  max-w-xs" />
+                                  {
+                                    showPass ? <FaEyeSlash onClick={handelPass} className="-mt-12 ms-72"></FaEyeSlash> : <FaEye onClick={handelPass} className="-mt-12 ms-72 "></FaEye>
+                                }
                                 {watch("password_repeat") !== watch("password") &&
                                     getValues("password_repeat") ? (
                                     <p>password not match</p>
@@ -169,17 +145,16 @@ const SignIn = () => {
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
-                                {
-                                    showPass ? <FaEyeSlash onClick={handelPass} className=" absolute top-[458px] right-10"></FaEyeSlash> : <FaEye onClick={handelPass} className=" absolute top-[458px] right-10"></FaEye>
-                                }
+                               
                             </div>
-                            <div className="form-control mt-6">
+                            <div className="">
                                 <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
                             <p className="text-2xl" ><small>Already have an account <Link to="/login"><span className="text-blue-600">Login</span></Link></small></p>
-                        <GoogleLogin></GoogleLogin>
                         </form>
-                    </div>
+                          <GoogleLogin></GoogleLogin>
+                        </div>
+                    
                 </div>
             </div>
         </div>

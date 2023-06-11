@@ -34,8 +34,8 @@ const Login = () => {
                 <h1 className='text-3xl font-bold font-mono text-center lg:hidden'>WellCome Back</h1>
             </div>
 
-            <div className=' relative bg-gray-200 mx-auto border m-5 p-4 lg:w-[50%] rounded-lg ' >
-                <form onSubmit={handleSubmit(onSubmit)} >
+            <div className=' relative bg-gray-200 mx-auto border p-5 lg:w-[50%] rounded-lg ' >
+                <form className="my-0" onSubmit={handleSubmit(onSubmit)} >
                     <div className="form-control w-full ">
                         <h1 className='text-3xl font-bold font-mono text-center hidden lg:block mb-3 '>WellCome Back <br />Please LogIn !</h1>
                         <div className="form-control ">
@@ -53,10 +53,10 @@ const Login = () => {
                         <input type={`${showPass ? 'text' : 'password'}`}  {...register("password", { required: true })} placeholder="Type here" className="input input-bordered  " />
                         {errors.password && <span className="text-red-600">password is required</span>}
                         {
-                            showPass ? <FaEyeSlash onClick={handelPass} className=" absolute top-[250px] right-10"></FaEyeSlash> : <FaEye onClick={handelPass} className=" absolute top-[250px] right-10"></FaEye>
+                            showPass ? <FaEyeSlash onClick={handelPass} className="-mt-12 ms-64"></FaEyeSlash> : <FaEye onClick={handelPass} className="-mt-12 ms-64 mb-5"></FaEye>
                         }
                     </div>
-                    <span className='text-red-500 font-bold'>
+                    <span className='text-red-500 font-bold '>
 
                     </span>
                     <button className="btn btn-primary mt-4 w-full mx-auto"> <input type="submit" value="Login" /></button>

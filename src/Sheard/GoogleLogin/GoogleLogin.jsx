@@ -33,10 +33,10 @@ const GoogleLogin = () => {
 
     return (
         <div>
-            <div className="divider"></div>
-            <div className="w-full text-center my-4">
+           
+            <div className="w-full text-center ">
                
-                <button onClick={handleGoogleSignIn} className="btn btn-outline text-center    lg:w-full  lg:ms-0  mt-4"><FaGoogle className='m-2' /> Continue With Google</button>
+                <button onClick={handleGoogleSignIn} className="btn btn-outline text-center    lg:w-full  lg:ms-0  "><FaGoogle className='m-2' /> Continue With Google</button>
              
             </div>
         </div>

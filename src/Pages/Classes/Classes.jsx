@@ -16,33 +16,47 @@ const Classes = () => {
         }
     })
 
-    const selectedItem = []
 
     const handelSelect = (item) => {
-       console.log(item._id)
         if (user?.email) {
 
-            const selectedData = { ...item, email: user?.email }
-            fetch(`http://localhost:5000/carts?email=${user?.email}&id=${item._id}`, {
-                method: 'PUT',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(selectedData)
-            }).then(res => res.json())
-            .then(data =>{
-                if(data.upsertedId){
+            const selectedData = {
+                id:item._id,
+                 className:item.className,
+                 email: user?.email,
+                 instructorName:item.instructorName,
+                 image:item.image,
+                 availableSeats:item.availableSeats,
+                 price:item.price,
+                 status:item.status,
+                 studentNumber:item.studentNumber
+                
+                }
+            // fetch(`http://localhost:5000/carts?email=${user?.email}&&id=${item._id}`, {
+            //     method: 'PUT',
+            //     headers: {
+            //         'content-type': 'application/json'
+            //     },
+            //     body: JSON.stringify(selectedData)
+            // }).then(res => res.json())
+
+
+
+            axiosSecure.put('/carts',{data:selectedData,email:user.email,id:item._id})
+            .then(res => {
+                console.log(res)
+                if(res.data.upsertedCount>0){
                     refetch()
                     Swal.fire({
                       position: 'top-end',
                       icon: 'success',
-                      title: 'class added successfully.',
+                      title: 'class  added  successfully.',
                       showConfirmButton: false,
                       timer: 1500
                     });
                 }
 
-                else if(data.matchedCount>0){
+                else if(res.data=='data already added'){
                     refetch()
                     Swal.fire({
                       position: 'top-end',
@@ -76,6 +90,7 @@ const Classes = () => {
                             <h2 className="card-title text-[#e50e84] font-serif">Name: {item.className}</h2>
                             <p>Instructor Name: {item.instructorName}</p>
                             <p>Available Seats: {item.availableSeats}</p>
+                            <p>Enrolled Students: {item.studentNumber}</p>
                             <p>Price: {item.price}</p>
                             <div className="card-actions justify-center">
                                 <button onClick={() => handelSelect(item)} className="btn btn-secondary">added class</button>
