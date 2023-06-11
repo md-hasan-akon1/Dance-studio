@@ -4,23 +4,26 @@ import './common.css'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
-const CheckOutForm = ({data, price }) => {
+const CheckOutForm = ({ item, price }) => {
     const { user } = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
-    const [clientSecret,setClientSecret]=useState()
+    const [clientSecret, setClientSecret] = useState()
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError] = useState()
-
+    const [processing, setProcessing] = useState(false)
+ 
+    console.log(clientSecret)
     useEffect(() => {
-      
-            axiosSecure.post('/create-payment-intent', { price })
-            .then(res=>setClientSecret(res.data.clientSecret))
-    
+
+        axiosSecure.post('/create-payment-intent', { price })
+            .then(res => setClientSecret(res.data.clientSecret))
+
 
     }, [price])
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setProcessing(true)
         if (!stripe || !elements) {
             return
         }
@@ -28,7 +31,7 @@ const CheckOutForm = ({data, price }) => {
         if (card === null) {
             return
         }
-        const { err, paymentMethod } = await stripe.createPaymentMethod({
+        const { err } = await stripe.createPaymentMethod({
             type: 'card',
             card
         })
@@ -41,25 +44,41 @@ const CheckOutForm = ({data, price }) => {
         }
 
 
-        const {paymentIntent, error:conErr} = await stripe.confirmCardPayment(
-           clientSecret,
+        const { paymentIntent, error: conErr } = await stripe.confirmCardPayment(
+            clientSecret,
             {
-              payment_method: {
-                card: card,
-                billing_details: {
-                  name: user?.displayName||'name not fund',
-                  email:user?.email ||'email not found',
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: user?.displayName || 'name not fund',
+                        email: user?.email || 'email not found',
+                    },
                 },
-              },
             },
-          );
-          if(conErr){
+        );
+        if (conErr) {
             setError(conErr.message)
-          }
-          if(paymentIntent.succeeded){
+        }
+        if (paymentIntent?.status === 'succeeded') {
+            console.log('avol tabol')
+            const payment = {
+                email: user?.email,
+                transitionId: paymentIntent.id,
+                ...item
+            }
+            axiosSecure.post('/payment', payment).then(res => {
+                if (res.data.insertedId) {
 
-          }
+                    console.log(item._id)
+
+                }
+            })
+
+        }
+        setProcessing(false)
     }
+
+    console.log(error)
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -79,7 +98,7 @@ const CheckOutForm = ({data, price }) => {
                         },
                     }}
                 />
-                <button className='btn btn-secondary' type="submit" disabled={!stripe||!clientSecret}>
+                <button className='btn btn-secondary' type="submit" disabled={!stripe || !clientSecret || processing}>
                     Pay
                 </button>
                 {error && <p className='ml-20 mt-0'>{error}</p>}

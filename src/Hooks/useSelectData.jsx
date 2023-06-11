@@ -3,15 +3,15 @@ import useAxiosSecure from "./useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
-const useSelectData=()=>{
-    const {user,loading}=useContext(AuthContext)
+const useSelectData = () => {
+    const { user, loading } = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
-    
+
     const { data: selectedData = [], refetch } = useQuery({
-         queryKey: ['add/cart'],
-     
+        queryKey: ['add/cart'],
+        enabled: !loading,
         queryFn: async () => {
-            if(!user){
+            if (!user) {
                 return []
             }
             const res = await axiosSecure.get('/add/cart')
@@ -19,6 +19,6 @@ const useSelectData=()=>{
         }
     })
 
-return [selectedData,refetch]
+    return [selectedData, refetch]
 }
 export default useSelectData;

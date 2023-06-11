@@ -17,7 +17,7 @@ const Payment = () => {
         <div className='pt-10 h-full bg-slate-200'>
              <h1 className='uppercase text-[#e50e84] text-center text-4xl font-bold font-serif'>please processed your payment</h1>
             <Elements  stripe={stripePromise}>
-                <CheckOutForm data={data} price={data?.price} ></CheckOutForm>
+                <CheckOutForm item={data} price={data?.price} ></CheckOutForm>
             </Elements>
         </div>
     );
