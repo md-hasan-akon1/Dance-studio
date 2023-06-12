@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import UseTitle from '../../../Hooks/useTitle';
 
 const secrete_key = import.meta.env.VITE_IMAGE_SECRETE;
 const AddClass = () => {
+    UseTitle('AddClass')
     const [axiosSecure]=useAxiosSecure()
 
     const img_upload_url = `https://api.imgbb.com/1/upload?key=${secrete_key}`
@@ -37,7 +39,6 @@ const AddClass = () => {
                     const classInfo = { className, instructorName, email, availableSeats:parseInt(availableSeats),price:parseFloat(price), image: data.data.display_url,status:"pending",studentNumber:0 }
                     axiosSecure.post('/addClass',classInfo)
                     .then(data => {
-                        console.log(data.data)
                         setAddLoading(false)
                         if(data.data.insertedId){
                             Swal.fire({

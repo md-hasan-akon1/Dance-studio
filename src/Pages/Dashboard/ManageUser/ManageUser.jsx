@@ -6,16 +6,16 @@ import { GrUserAdmin } from "react-icons/gr";
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import UseTitle from '../../../Hooks/useTitle';
 
 const ManageUser = () => {
+  UseTitle('manage user')
   const [axiosSecure] = useAxiosSecure()
   const [data, refetch] = useUser()
   const handelInstructor = (id) => {
-    fetch(`http://localhost:5000/users/instructor/${id}`, {
-      method: "PATCH",
-    }).then(res => res.json())
-      .then(data => {
-        if (data.modifiedCount > 0) {
+   axiosSecure.patch(`users/instructor/${id}`)
+      .then(res => {
+        if (res.data.modifiedCount > 0) {
           refetch()
           Swal.fire({
             position: 'top-end',
@@ -31,13 +31,10 @@ const ManageUser = () => {
   }
 
   const handelAdmin = (id) => {
-    console.log(id)
 
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: "PATCH",
-    }).then(res => res.json())
+   axiosSecure.patch(`users/admin/${id}`)
       .then(data => {
-        if (data.modifiedCount > 0) {
+        if (data.data.modifiedCount > 0) {
           refetch()
           Swal.fire({
             position: 'top-end',

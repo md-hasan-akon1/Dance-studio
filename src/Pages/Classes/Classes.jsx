@@ -4,8 +4,10 @@ import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import UseTitle from '../../Hooks/useTitle';
 
 const Classes = () => {
+    UseTitle('classes')
     const { user, loading } = useContext(AuthContext)
     const navigate=useNavigate()
     const [axiosSecure] = useAxiosSecure()
@@ -36,7 +38,6 @@ const Classes = () => {
             }
             axiosSecure.put('/carts', { data: selectedData, email: user.email, id: item._id })
                 .then(res => {
-                    console.log(res)
                     if (res.data.upsertedCount > 0) {
                         refetch()
                         Swal.fire({
@@ -73,8 +74,10 @@ const Classes = () => {
         }
 
     }
+    
     return (
         <div className='bg-slate-200 pt-20'>
+            
             <h1 className='uppercase text-[#e50e84] text-center text-4xl font-bold font-serif'>please chose your favorite classes</h1>
 
 

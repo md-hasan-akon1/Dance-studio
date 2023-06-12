@@ -4,11 +4,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import GoogleLogin from "../../Sheard/GoogleLogin/GoogleLogin";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import UseTitle from "../../Hooks/useTitle";
 
 const secrete_key = import.meta.env.VITE_IMAGE_SECRETE;
 const SignIn = () => {
+    UseTitle('signin')
     const navigate = useNavigate();
     const location = useLocation();
+    const [axiosSecure]=useAxiosSecure()
 
     const from = location.state?.from?.pathname || "/";
     const [showPass, setShowPass] = useState(false)
@@ -28,8 +32,6 @@ const SignIn = () => {
             .then(result => {
 
                 const loggedUser = result.user;
-                console.log(loggedUser);
-
                 updateUserProfile(data.name, data.photoURL[0].name)
 
                     .then(() => {
@@ -45,15 +47,9 @@ const SignIn = () => {
                                 if (imgResponse.success) {
                                     const saveUser = { name: data.name, email: data.email, image: imgResponse.data.display_url, role: 'student' }
 
-                                    fetch(`http://localhost:5000/users`, {
-                                        method: "PUT",
-                                        headers: {
-                                            "content-type": "application/json"
-                                        },
-                                        body: JSON.stringify(saveUser)
-                                    }).then(res => res.json())
+                                   axiosSecure.put('/users')
                                         .then(data => {
-                                            if (data.upsertedCount > 0 || data.modifiedCount > 0 || data.matchedCount > 0) {
+                                            if (data.data.upsertedCount > 0 || data.modifiedCount > 0 || data.matchedCount > 0) {
                                                 navigate(from)
                                             }
 
@@ -67,7 +63,7 @@ const SignIn = () => {
 
 
                     })
-                    .catch(error => console.log(error))
+                    .catch(error =>'')
             })
     };
 

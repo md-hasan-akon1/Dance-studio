@@ -17,11 +17,15 @@ import PrivateRoute from "./PrivetRout";
 import Instructor from "../Pages/Instructor/Instructor";
 import Payment from "../Pages/Payment/Payment";
 import EnrolledHistory from "../Pages/EnrolledHistory/EnrolledHistory";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import Error from "../Pages/Error/Error";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement:<Error></Error>,
         children: [
             {
                 path: '/',
@@ -56,7 +60,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard/manageclass',
-                element: <ManageClass></ManageClass>
+                element: <AdminRoute><ManageClass></ManageClass></AdminRoute>
             },
             {
                 path:'/dashboard/enrolledhistory',
@@ -64,7 +68,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/manageuser',
-                element: <ManageUser></ManageUser>
+                element:<AdminRoute> <ManageUser></ManageUser></AdminRoute>
             },
             {
                 path: '/dashboard/selectedclass',
@@ -72,7 +76,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/dashboard/payment/:id',
-                element:<Payment></Payment>
+                element:<PrivateRoute><Payment></Payment></PrivateRoute>
             },
             {
                 path: '/dashboard/enrolledclass',
@@ -80,11 +84,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addclass',
-                element: <AddClass></AddClass>
+                element: <InstructorRoute><AddClass></AddClass></InstructorRoute>
             },
             {
                 path: '/dashboard/myclass',
-                element: <MyAddClass></MyAddClass>
+                element: <InstructorRoute><MyAddClass></MyAddClass></InstructorRoute>
             }
         ]
     }

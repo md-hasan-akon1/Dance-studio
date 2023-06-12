@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import UseRole from "../../Hooks/UseRole";
 
 
 const Navbar = () => {
+     const [isRole] = UseRole()
+    
     const { user, logOut } = useContext(AuthContext)
 
     const handleLogOut = () => {
@@ -14,9 +17,14 @@ const Navbar = () => {
         <NavLink to='/instructor' className="mx-4">Instructors</NavLink>
         <NavLink to='/classes' className="mx-4">Classes</NavLink>
         {
-            user ? <>
-                <NavLink to='/dashboard' className="mx-4">Dashboard</NavLink>
-            </> : ''
+            user?.email && <>
+
+                {
+                    isRole=='admin' ? <NavLink to='/dashboard/manageclass' className="mx-4">Dashboard</NavLink> :
+                        isRole=='instructor' ? <NavLink to='/dashboard/addclass' className="mx-4">Dashboard</NavLink> :
+                            <NavLink to='/dashboard/selectedclass' className="mx-4">Dashboard</NavLink>
+                }
+            </>
 
         }
 
@@ -48,12 +56,13 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
+
                         {
                             user ? <>
                                 <div className="avatar z-auto">
                                     <div className="w-12 rounded-full mr-4">
                                         <img title={user?.displayName} src={user?.photoURL
-} />
+                                        } />
                                     </div>
                                 </div>
                                 <button onClick={handleLogOut} className="btn btn-secondary">LogOut</button></> : <><NavLink to='/login' className="mx-4 btn btn-secondary">login</NavLink></>

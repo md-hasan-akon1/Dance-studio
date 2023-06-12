@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { GrMenu } from "react-icons/gr";
-import useAdmin from '../../Hooks/useAdmin';
-import useInstructor from '../../Hooks/useInstructor';
+import UseRole from '../../Hooks/UseRole';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 const DashboardLayOut = () => {
-  const [isAdmin] = useAdmin()
-  const [isInstructor] = useInstructor()
-  // const isAdmin =true ;
-  // const isInstructor=false;
+  const {user}=useContext(AuthContext)
+ const [isRole]=UseRole()
   return (
     <div className="drawer lg:drawer-open relative">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -19,15 +17,15 @@ const DashboardLayOut = () => {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 h-full bg-[#e50e84] text-base-content uppercase">
-          <div className="uppercase text-center ">
-            <h1 className="text-3xl font-bold"> </h1>
+          <div className=" text-center mb-14 w-full  ">
+            <img className='h-20 w-20 rounded-full mx-auto' src={user.photoURL} alt="" />
 
           </div>
 
-          {isAdmin ? <>
+          {isRole=='admin' ? <>
             <li><NavLink to='/dashboard/manageclass'>Manage Class</NavLink></li>
             <li><NavLink to='/dashboard/manageuser'>Manage Users</NavLink></li></>
-            : isInstructor ? <>
+            : isRole=='instructor' ? <>
               <li><NavLink to='/dashboard/addclass'>Add a class</NavLink></li>
               <li><NavLink to='/dashboard/myclass'>My Class</NavLink></li>
             </>
@@ -40,9 +38,9 @@ const DashboardLayOut = () => {
 
 
 
+
           <div className="divider"></div>
           <li><NavLink to='/'> Home</NavLink></li>
-
         </ul>
 
       </div>

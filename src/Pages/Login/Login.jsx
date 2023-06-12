@@ -4,8 +4,10 @@ import { FaEye, FaEyeSlash, } from 'react-icons/fa'
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleLogin from "../../Sheard/GoogleLogin/GoogleLogin";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import UseTitle from "../../Hooks/useTitle";
 
 const Login = () => {
+    UseTitle('login')
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -17,13 +19,12 @@ const Login = () => {
     }
     const { register, handleSubmit,  formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data)
         signIn(data.email,data.password)
         .then(result =>{
             navigate(from)
         
         } )
-        .catch(error=>console.log(error))
+        .catch(error=>(error))
     };
     return (
         <div className='py-20  border grid grid-cols-1 lg:grid-cols-2  mx-auto rounded-lg'>

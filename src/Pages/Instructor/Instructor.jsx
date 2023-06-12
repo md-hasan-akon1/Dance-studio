@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import UseTitle from '../../Hooks/useTitle';
 
 const Instructor = () => {
+  UseTitle('instructor')
     const [instructors,setInstructors]=useState([])
     const [axiosSecure]=useAxiosSecure()
     useEffect(()=>{

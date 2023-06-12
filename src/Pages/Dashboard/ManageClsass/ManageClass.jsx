@@ -3,8 +3,10 @@ import React, { useContext, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import UseTitle from '../../../Hooks/useTitle';
 
 const ManageClass = () => {
+  UseTitle('Manage classes')
     const [textareaValue, setTextareaValue]=useState('')
     const { user, loading } = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure()
@@ -22,11 +24,9 @@ const ManageClass = () => {
       };
 
 const handelApprove=(id)=>{
-fetch(`http://localhost:5000/addclass/approve/${id}`, {
-        method: "PATCH",
-      }).then(res => res.json())
+axiosSecure.patch(`/addclass/approve/${id}`)
         .then(data => {
-          if (data.modifiedCount > 0) {
+          if (data.data.modifiedCount > 0) {
             refetch()
             Swal.fire({
               position: 'top-end',
@@ -42,11 +42,9 @@ fetch(`http://localhost:5000/addclass/approve/${id}`, {
 
 const handelDeny=(id)=>{
 
-    fetch(`http://localhost:5000/addclass/deny/${id}`, {
-        method: "PATCH",
-      }).then(res => res.json())
+   axiosSecure.patch(`/addclass/deny/${id}`)
         .then(data => {
-          if (data.modifiedCount > 0) {
+          if (data.data.modifiedCount > 0) {
             refetch()
             Swal.fire({
               position: 'top-end',
@@ -61,14 +59,9 @@ const handelDeny=(id)=>{
 
 }
 const handelFeedback=(id)=>{
-  fetch(`http://localhost:5000/addclass/feedback/${id}`,{
-    method:"PUT",
-    headers:{
-        'content-type':'application/json'
-    },
-    body:JSON.stringify({textareaValue})
-  }).then(res=>res.json()).then(data=>{
-    if(data.modifiedCount>0){
+  axiosSecure.put(`/addclass/feedback/${id}`,{textareaValue})
+    .then(data=>{
+    if(data.data.modifiedCount>0){
         refetch()
             Swal.fire({
               position: 'top-end',

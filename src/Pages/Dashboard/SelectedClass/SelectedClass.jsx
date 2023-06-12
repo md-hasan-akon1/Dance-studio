@@ -6,8 +6,10 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { Link } from 'react-router-dom';
 import useSelectData from '../../../Hooks/useSelectData';
+import UseTitle from '../../../Hooks/useTitle';
 
 const SelectedClass = () => {
+    UseTitle('selected title')
     const { user } = useContext(AuthContext)
     const [selectedData,refetch]=useSelectData()
      const [axiosSecure] = useAxiosSecure()

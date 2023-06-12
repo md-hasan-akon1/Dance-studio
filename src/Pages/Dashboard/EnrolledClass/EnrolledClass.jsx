@@ -1,14 +1,17 @@
 import React, {  useContext, useEffect, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import UseTitle from '../../../Hooks/useTitle';
 
 const EnrolledClass = () => {
+  UseTitle('enrolled class')
     const {user}=useContext(AuthContext)
 const [enrolledData,setEnrolledData]=useState()
     const [axiosSecure]=useAxiosSecure()
     useEffect(()=>{
         axiosSecure.get(`/enrolled/${user?.email}`).then(res=>setEnrolledData(res.data))
     },[user])
+    
     return (
         <div className='bg-slate-200 pt-20 h-full'>
              <h1 className='uppercase text-[#e50e84] text-center text-4xl font-bold font-serif'>all your enrolled classes</h1>

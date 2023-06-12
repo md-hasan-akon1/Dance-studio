@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import moment from 'moment';
+import UseTitle from '../../Hooks/useTitle';
 
 const EnrolledHistory = () => {
+    UseTitle('enroll history')
     const { user } = useContext(AuthContext)
     const [enrolledData, setEnrolledData] = useState()
     const [axiosSecure] = useAxiosSecure()

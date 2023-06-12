@@ -24,6 +24,7 @@ const PopularTeacher = () => {
                                 {teacher.name}
                                 <div className="badge badge-secondary">Popular</div>
                             </h2>
+                            <p>Email: {teacher.email}</p>
                             <p>This is Our popular teacher</p>
                           
 
