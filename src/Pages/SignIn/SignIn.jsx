@@ -75,7 +75,7 @@ const SignIn = () => {
 
 
     return (
-        <div className=" h-full relative">
+        <div className=" h-full relative py-20">
             <div className="hero  ">
                 <div className="hero-content grid grid-cols-1 lg:grid-cols-2  mx-auto ">
                     <div>

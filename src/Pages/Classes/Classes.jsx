@@ -81,7 +81,7 @@ const Classes = () => {
 
 
 
-            <div className='pb-10 grid grid-cols-1 lg:grid-cols-3 font-semibold'>
+            <div className='pb-10 grid grid-cols-1 lg:grid-cols-3 gap-4 font-semibold'>
 
                 {
                     classes?.map(item => <div key={item._id} className="shadow-2xl card w-96 glass mx-auto mt-10">
@@ -93,7 +93,7 @@ const Classes = () => {
                             <p>Enrolled Students: {item.studentNumber}</p>
                             <p>Price: {item.price}</p>
                             <div className="card-actions justify-center">
-                                <button onClick={() => handelSelect(item)} className="btn btn-secondary">added class</button>
+                                <button disabled={item.availableSeats===0} onClick={() => handelSelect(item)} className="btn btn-secondary">added class</button>
                             </div>
                         </div>
                     </div>)

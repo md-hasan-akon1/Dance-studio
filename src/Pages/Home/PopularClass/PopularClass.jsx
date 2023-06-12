@@ -15,7 +15,7 @@ const PopularClass = () => {
         <div className="lg:w-[1280px] mx-auto mt-8">
             <h1 className='uppercase text-[#e50e84] text-center text-4xl font-bold font-serif'>Our Popular Classes</h1>
             <p className="text-center text-slate-400">Popular dance classes typically offer a range of benefits, including physical fitness, <br /> artistic expression, social interaction, and personal enjoyment. These classes often attract individuals with <br /> varying skill levels, from beginners to more experienced dancers.</p>
-            <div className=" grid grid-cols-1  lg:grid-cols-3 mt-8">
+            <div className=" grid grid-cols-1  lg:grid-cols-3 gap-10  ">
 
 
                 {
