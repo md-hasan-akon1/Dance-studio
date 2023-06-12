@@ -16,8 +16,8 @@ const Navbar = () => {
         {
             user ? <>
                 <NavLink to='/dashboard' className="mx-4">Dashboard</NavLink>
-            </> :''
-               
+            </> : ''
+
         }
 
 
@@ -49,7 +49,14 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-end">
                         {
-                            user ? <><button onClick={handleLogOut} className="btn btn-secondary">LogOut</button></> : <><NavLink to='/login' className="mx-4 btn btn-secondary">login</NavLink></>
+                            user ? <>
+                                <div className="avatar z-auto">
+                                    <div className="w-12 rounded-full mr-4">
+                                        <img title={user?.displayName} src={user?.photoURL
+} />
+                                    </div>
+                                </div>
+                                <button onClick={handleLogOut} className="btn btn-secondary">LogOut</button></> : <><NavLink to='/login' className="mx-4 btn btn-secondary">login</NavLink></>
                         }
 
                     </div>

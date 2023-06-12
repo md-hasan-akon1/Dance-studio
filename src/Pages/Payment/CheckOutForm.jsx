@@ -62,6 +62,7 @@ const CheckOutForm = ({ item, price }) => {
         if (paymentIntent?.status === 'succeeded') {
             console.log('avol tabol')
             const payment = {
+                date:new Date(),
                 email: user?.email,
                 transitionId: paymentIntent.id,
                 ...item

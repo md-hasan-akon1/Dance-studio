@@ -17,7 +17,7 @@ const [enrolledData,setEnrolledData]=useState()
 
                 {
 
-                    enrolledData?.map(enroll=><div className="card card-compact  bg-base-100 shadow-xl">
+                    enrolledData?.map(enroll=><div key={enroll.id} className="card card-compact  bg-base-100 shadow-xl">
                     <figure><img className='h-40 w-full' src={enroll.image} alt="Shoes" /></figure>
                     <div className="card-body ">
                       <h2 className="card-title">Class Name: {enroll.className}</h2>

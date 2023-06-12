@@ -4,15 +4,15 @@ import { GrMenu } from "react-icons/gr";
 import useAdmin from '../../Hooks/useAdmin';
 import useInstructor from '../../Hooks/useInstructor';
 const DashboardLayOut = () => {
-  const [isAdmin]=useAdmin()
-  const[isInstructor]=useInstructor()
+  const [isAdmin] = useAdmin()
+  const [isInstructor] = useInstructor()
   // const isAdmin =true ;
   // const isInstructor=false;
   return (
     <div className="drawer lg:drawer-open relative">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content ">
-       <Outlet></Outlet>
+        <Outlet></Outlet>
         <label htmlFor="my-drawer-2" className="btn absolute top-0 drawer-button lg:hidden"><GrMenu></GrMenu></label>
 
       </div>
@@ -31,8 +31,10 @@ const DashboardLayOut = () => {
               <li><NavLink to='/dashboard/addclass'>Add a class</NavLink></li>
               <li><NavLink to='/dashboard/myclass'>My Class</NavLink></li>
             </>
-              : <><li><NavLink to='/dashboard/selectedclass'> My Selected Class</NavLink></li>
-                <li><NavLink to='/dashboard/enrolledclass'> My Enrolled Class</NavLink></li></>
+              : <>
+                <li><NavLink to='/dashboard/selectedclass'> My Selected Class</NavLink></li>
+                <li><NavLink to='/dashboard/enrolledclass'> My Enrolled Class</NavLink></li>
+                <li><NavLink to='/dashboard/enrolledhistory'> My Enrolled History</NavLink></li></>
           }
 
 
