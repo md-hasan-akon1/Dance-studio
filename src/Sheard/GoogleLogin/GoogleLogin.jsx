@@ -16,7 +16,7 @@ const GoogleLogin = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email,image:loggedInUser.photoURL, role:'student' }
-                fetch('http://localhost:5000/users', {
+                fetch('https://assingment-12-server-one.vercel.app/users', {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'

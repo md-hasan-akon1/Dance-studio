@@ -5,8 +5,10 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import UseTitle from '../../Hooks/useTitle';
+import UseRole from '../../Hooks/UseRole';
 
 const Classes = () => {
+    const [isRole]=UseRole()
     UseTitle('classes')
     const { user, loading } = useContext(AuthContext)
     const navigate=useNavigate()
@@ -95,7 +97,7 @@ const Classes = () => {
                             <p>Enrolled Students: {item.studentNumber}</p>
                             <p>Price: {item.price}</p>
                             <div className="card-actions justify-center">
-                                <button disabled={item.availableSeats === 0} onClick={() => handelSelect(item)} className="btn btn-secondary">added class</button>
+                                <button disabled={item.availableSeats === 0||isRole=='admin'||isRole=='instructor'} onClick={() => handelSelect(item)} className="btn btn-secondary">added class</button>
                             </div>
                         </div>
                     </div>)

@@ -4,7 +4,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://assingment-12-server-one.vercel.app'
 })
 const useAxiosSecure = () => {
     const {  logOut, } = useContext(AuthContext);

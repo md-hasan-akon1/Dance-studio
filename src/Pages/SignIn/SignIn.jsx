@@ -47,7 +47,7 @@ const SignIn = () => {
                                 if (imgResponse.success) {
                                     const saveUser = { name: data.name, email: data.email, image: imgResponse.data.display_url, role: 'student' }
 
-                                   axiosSecure.put('/users')
+                                   axiosSecure.put('/users',saveUser)
                                         .then(data => {
                                             if (data.data.upsertedCount > 0 || data.modifiedCount > 0 || data.matchedCount > 0) {
                                                 navigate(from)

@@ -5,7 +5,7 @@ const PopularClass = () => {
     const [popularClass, setPopularClass] = useState([])
     
     useEffect(() => {
-        fetch('http://localhost:5000/popularClass')
+        fetch('https://assingment-12-server-one.vercel.app/popularClass')
             .then(res => res.json()).then(data => setPopularClass(data))
     }, [])
     

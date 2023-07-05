@@ -60,7 +60,7 @@ const CheckOutForm = ({ item, price }) => {
             setError(conErr.message)
         }
         if (paymentIntent?.status === 'succeeded') {
-            console.log('avol tabol')
+          
             const payment = {
                 date:new Date(),
                 email: user?.email,
@@ -68,7 +68,7 @@ const CheckOutForm = ({ item, price }) => {
                 ...item
             }
 
-console.log(payment)
+
 
             axiosSecure.patch(`/payment/${item._id}`, payment).then(res => {
                console.log(res.data)
@@ -81,7 +81,7 @@ console.log(payment)
         setProcessing(false)
     }
 
-    console.log(error)
+ 
     return (
         <div>
             <form onSubmit={handleSubmit}>
